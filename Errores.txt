@@ -1,0 +1,10 @@
+0 Cadena Aceptada
+1 Cadena No Aceptada
+-1 Error
+-2 Despues de un digito sigue un digito o un punto o el numero e
+-3 Despues de un punto sigue un digito
+-4 Despues de un digito sigue digito o el numero e
+-5 Despues del numero e sigue un digito o un signo
+-6 Despues de un signo sigue un digito
+-7 Despues de un digito sigue un digito
+-8 Un numero real debe empezar con un signo o un digito
