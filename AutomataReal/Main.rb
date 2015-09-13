@@ -18,4 +18,4 @@ if (@estado == 4 or @estado == 7 or @estado == 2)
 else
   codigo_error = @estado
 end
-puts errores = ManejoDeErrores.new(codigo_error).get_mesage
+ManejoDeErrores.new(codigo_error).get_mesage
