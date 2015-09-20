@@ -10,7 +10,8 @@ class ManejoArchivo
     @sheet1 = @book.worksheet 0
     0.upto(@sheet1.last_row_index) do|i|#ciclo que itera las filas
       if @sheet1.cell(i,0) == @error# si el codigo de error es igual al error pasado como argumento
-          puts @sheet1.cell(i,1)#se imprime la descripcion del error
+          cadena = @sheet1.cell(i,1)#se imprime la descripcion del error
+        return cadena.to_s
       end
     end
   end

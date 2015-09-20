@@ -38,7 +38,7 @@ class Real < Automata
        elsif ManejoCadena.new.isNumeroE(simbolo)
          @estado = 5
        else
-         @estado = 1
+         @estado = -4
        end
      when 5
        if ManejoCadena.new.isDigito(simbolo)
@@ -58,7 +58,7 @@ class Real < Automata
        if ManejoCadena.new.isDigito(simbolo)
          @estado = 7
        else
-         @estado = 1
+         @estado = -7
        end
      when 9
        if ManejoCadena.new.isDigito(simbolo)

@@ -11,15 +11,19 @@ class HelloWindow < FXMainWindow
     label = FXLabel.new(frame1,"Cadena: ")
     name_target = FXDataTarget.new("")
     textfield = FXTextField.new(frame1,30,:target=>name_target,:selector=>FXDataTarget::ID_VALUE)
-    label_msj = FXLabel.new(self,"",:opts=>FRAME_LINE|LAYOUT_EXPLICIT,:x=>5,:y=>50,:width=>295,:height=>40)
+    label_msj = FXLabel.new(self,"",:opts=>FRAME_LINE|LAYOUT_EXPLICIT,:x=>5,:y=>50,:width=>395,:height=>40)
 
     boton = FXButton.new(self,"Aceptar",:opts=>FRAME_SUNKEN|FRAME_THICK|LAYOUT_EXPLICIT,:x=>60,:y=>130,:width=>80,:height=>40)
     boton_salir = FXButton.new(self,"Salir",:opts=>FRAME_SUNKEN|FRAME_THICK|LAYOUT_EXPLICIT,:x=>180,:y=>130,:width=>80,:height=>40)
-    #boton.connect(SEL_COMMAND)do
-     # puts "La cadena(boton) es #{name_target.value}"
-      #@cadena = name_target.value.to_s
-      #puts analizar_cadena(@cadena)
-    #end
+    #evento del boton aceptar
+    boton.connect(SEL_COMMAND)do
+      puts "La cadena(boton) es #{name_target.value}"
+    end
+    #evento del boton salir
+    boton_salir.connect(SEL_COMMAND)do
+      exit
+    end
+    #evento del fxtextfield
     name_target.connect(SEL_COMMAND)do
       puts "La cadena(FXTextField) es #{name_target.value}"
       cadena = name_target.value.to_s
@@ -44,6 +48,7 @@ class HelloWindow < FXMainWindow
     end
 
   end
+
   def create
     super
     show(PLACEMENT_SCREEN)
@@ -51,6 +56,6 @@ class HelloWindow < FXMainWindow
 end
 
 app = FXApp.new
-HelloWindow.new(app,"Automata Real",300,200)
+HelloWindow.new(app,"Automata Real",400,200)
 app.create
 app.run
