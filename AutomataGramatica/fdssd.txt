@@ -1,0 +1,111 @@
+
+cadena = "    const a := 3, v := suma;"
+
+puts cadena.sub(/^\s+/,"")
+
+# leemos archivo
+load 'Instruccion.rb'
+archivo = "Codigo.txt"
+load 'ManejoCadena.rb'
+
+i = 0
+if File.exist?(archivo)
+ f = File.open(archivo,"r")
+  f.each do|linea|
+    i += 1
+    puts "liena: #{i} : #{linea}"
+end
+
+   # estado = 1
+    #instruccion = Instruccion.new(estado)
+    #array = ManejoCadena.new.separarBloque(linea)
+   # puts "liena: "+array.to_s
+    #array.each do|token|
+     # puts "Entro: #{token}"
+      #estado = instruccion.transicion(token)
+      #break if estado < 0
+      #instruccion.set_estado(estado)
+  end
+  f.close
+    #if (estado == 5)
+     # puts "Linea #{i} Aceptada"
+    #else
+     # puts "Linea #{i} No Aceptada"
+   # end
+
+  #end
+else
+  puts "#{archivo} no exites"
+end
+
+cadena = "if b > c then"
+
+
+def separarInstruccion(cadena)
+
+    cadena = cadena.gsub(" ","")
+    if cadena.match(/^call.*/)
+      puts "call"
+      cadena = cadena.sub(/call/," call ")
+
+    elsif cadena.match(/^begin.*end/)
+      puts "begin-end"
+      cadena = cadena.sub(/^begin/," begin ")
+      cadena = cadena.gsub(/,/," , ")
+      cadena = cadena.sub(/end/," end ")
+
+    elsif cadena.match(/^if.*then.*/)
+      puts "if-then"
+      cadena = cadena.sub(/if/," if ")
+      cadena = cadena.sub(/then/," then ")
+
+    elsif cadena.match(/^while.*do.*/)
+      puts "while-do"
+      cadena = cadena.sub(/while/," while ")
+      cadena = cadena.sub(/do/," do ")
+
+    else
+      puts ":="
+      cadena = cadena.sub(/:=/," := ")
+
+    end
+
+    return cadena.split(" ")
+  end
+
+
+
+ begin
+        txt=File.open( openDialog.filename, "r" ).read
+      rescue
+        txt=$!.to_s()
+      end
+    end
+    print txt
+
+
+
+def separarExpresion(cadena)
+    separador = Array.new
+    token = obtenerParentesisTermino(cadena)
+    token.each { |simbolo|
+      if(simbolo.match(/[(].+[)]/))
+        separador.push(simbolo)
+      else
+        simbolo = simbolo.gsub(/[+]/," + ")
+        simbolo = simbolo.gsub(/[-]/," - ")
+        a = simbolo.split(" ")
+        separador.push(a)
+      end
+    }
+
+    separador = separador.join(" ")
+    separador = separador.split(" ")
+    return separador
+  end
+
+def obtenerParentesisTermino(cadena)
+    cadena = cadena.gsub("("," (")
+    cadena = cadena.gsub(")",") ")
+    return cadena.split(" ")
+  end

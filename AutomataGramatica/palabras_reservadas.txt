@@ -1,0 +1,11 @@
+odd
+call
+begin
+end
+if
+then
+while
+do
+const
+var
+procedure

@@ -1,0 +1,67 @@
+array = Array.new
+    @array_bloque = Array.new
+    @array_instruccion = Array.new
+    array = mCadena.separarBloque(cadena)
+    puts array.to_s
+
+    while !array.empty?
+      if array[0] == "const"
+        index = array.index(";")
+        cadena_aux = array[0..index].join(" ")
+        puts "CADENA CONST:"+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+        @array_bloque << cadena_aux
+      elsif array[0] == "var"
+        index = array.index(";")
+        cadena_aux = array[0..index].join(" ")
+        puts "CADENA VAR =>"+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+        @array_bloque << cadena_aux
+      elsif array[0] == "procedure"
+        index = array.index(";")
+        cadena_aux = array[0..index].join(" ")
+        puts "CADENA PROCEDURE :"+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+        @array_bloque << cadena_aux
+      elsif array[0] == "begin"
+        index = array.rindex("end")
+        cadena_aux = array[0..index].join(" ")
+        puts "CADENA BEGIN "+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+
+      elsif array[0] == "if"
+        index = array.index("then")
+        cadena_aux = array[0..index].join(" ")
+        puts "cadena: "+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+      elsif array[0] == "while"
+        index = array.index("then")
+        cadena_aux = array[0..index].join(" ")
+        puts "Cadena"+cadena_aux
+        array = array.drop(index+1)
+        puts array.to_s
+      elsif (array[0].to_s).match(/[a-zA-Z]+\s:=\s+[a-zA-Z]+/)#identificador
+        
+      else
+
+      end
+    end
+    puts "Array_final: "+array.to_s
+
+
+--------------------
+f = File.open(file_name)
+    texto = ""
+    k = 0
+    f.each do |i|
+      #puts "#{f.lineno}: #{i}"
+      puts "liena #{k+=1}:"+i
+      texto = texto + i
+    end
+    f.close
+    @text.text = texto

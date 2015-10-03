@@ -1,0 +1,3 @@
+var a, b, c;
+procedure suma;
+suma := w*3
